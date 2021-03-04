@@ -92,7 +92,8 @@ namespace Rock_Paper_Scissors
             //{
             //    timer += 1;
             //}
-            lblActions.Text = chargedCD + "," + mirageCD;
+            Damage();
+            lblActions.Text = chargedCD + "," + mirageCD + "," + protectCD;
             radRock.Checked = false;
             radPaper.Checked = false;
             radScissors.Checked = false;
@@ -138,8 +139,9 @@ namespace Rock_Paper_Scissors
         }
         public void Damage()
         {
-            for (int i = 0; i <= 0; i += 1)
+            for (int i = 0; i <= 1000000; i += 1)
                 this.BackColor = Color.Red;
+            this.BackColor = Color.White;
         }
 
                 
@@ -163,6 +165,7 @@ namespace Rock_Paper_Scissors
                          barPlayerhp.Value -= 100;
                     barBoss2hp.Value -= 25;
                     mirageCD -= 1;
+                    protectCD -= 1;
                     chargedCD = 5;
                 }
                 else if (mirageCD == 0)
@@ -201,6 +204,7 @@ namespace Rock_Paper_Scissors
                     barBoss2hp.Value = opponentrealhp;
                     barBoss3hp.Value = opponentrealhp;
                     mirageCD = 5;
+                    protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else if (opponentmove == 0)
@@ -210,6 +214,7 @@ namespace Rock_Paper_Scissors
                     imgBoss3.Image = Properties.Resources.Rock;
                     lblActions.Text = "Rock clashes with Rock, and nothing happens!";
                     mirageCD -= 1;
+                    protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else if (opponentmove == 1)
@@ -220,6 +225,7 @@ namespace Rock_Paper_Scissors
                     lblActions.Text = "Rock clashes with Paper, and you take damage!";
                     barPlayerhp.Value -= 25;
                     mirageCD -= 1;
+                    protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else
@@ -231,6 +237,7 @@ namespace Rock_Paper_Scissors
                     barBoss2hp.Value -= 25;
                     opponentrealhp -= 25;
                     mirageCD -= 1;
+                    protectCD -= 1;
                     chargedCD -= 1;
                 }
             }
@@ -247,6 +254,7 @@ namespace Rock_Paper_Scissors
                     barBoss2hp.Value -= 25;
                     opponentrealhp -= 25;
                     mirageCD -= 1;
+                    protectCD -= 1;
                     chargedCD = 5;
                 }
                 else if (mirageCD == 0)
@@ -286,6 +294,7 @@ namespace Rock_Paper_Scissors
                     barBoss2hp.Value = opponentrealhp;
                     barBoss3hp.Value = opponentrealhp;
                     mirageCD = 5;
+                    protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else if (opponentmove == 0)
@@ -297,6 +306,7 @@ namespace Rock_Paper_Scissors
                     opponentrealhp -= 25;
                     barBoss2hp.Value -= 25;
                     mirageCD -= 1;
+                    protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else if (opponentmove == 1)
@@ -306,6 +316,7 @@ namespace Rock_Paper_Scissors
                     imgBoss3.Image = Properties.Resources.Paper;
                     lblActions.Text = "Paper clashes with Paper, and nothing happens!";
                     mirageCD -= 1;
+                    protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else
@@ -316,6 +327,7 @@ namespace Rock_Paper_Scissors
                     lblActions.Text = "Paper clashes with scissors, and you take damage!";
                     barPlayerhp.Value -= 25;
                     mirageCD -= 1;
+                    protectCD -= 1;
                     chargedCD -= 1;
 
                 }
@@ -337,6 +349,7 @@ namespace Rock_Paper_Scissors
                     barBoss2hp.Value -= 25;
                     opponentrealhp -= 25;
                     mirageCD -= 1;
+                    protectCD -= 1;
                     chargedCD = 5;
                 }
                 else if (mirageCD == 0)
@@ -375,6 +388,7 @@ namespace Rock_Paper_Scissors
                     barBoss2hp.Value = opponentrealhp;
                     barBoss3hp.Value = opponentrealhp;
                     mirageCD = 5;
+                    protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else if (opponentmove == 0)
@@ -385,6 +399,7 @@ namespace Rock_Paper_Scissors
                     lblActions.Text = "Scissors clashes with Rock, and you take damage!";
                     barPlayerhp.Value -= 25;
                     mirageCD -= 1;
+                    protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else if (opponentmove == 1)
@@ -396,6 +411,7 @@ namespace Rock_Paper_Scissors
                     barBoss2hp.Value -= 25;
                     opponentrealhp -= 25;
                     mirageCD -= 1;
+                    protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else
@@ -405,6 +421,7 @@ namespace Rock_Paper_Scissors
                     imgBoss3.Image = Properties.Resources.Scissors;
                     lblActions.Text = "Scissors clashes with scissors, and nothing happens!";
                     mirageCD -= 1;
+                    protectCD -= 1;
                     chargedCD -= 1;
 
                 }
@@ -423,6 +440,7 @@ namespace Rock_Paper_Scissors
                 imgBoss2.Visible = false;
                 barPlayerhp.Value -= 25;
                 mirageCD -= 1;
+                protectCD -= 1;
                 chargedCD -= 1;
             }
             else
@@ -432,12 +450,13 @@ namespace Rock_Paper_Scissors
 
         private void lblPlayer_Click(object sender, EventArgs e)
         {
-            if (((deciding == true) && radProtect.Checked == true) && protectCD != 0)
+            if (((deciding == true) && radProtect.Checked == true) && protectCD == 0)
                 lblActions.Text = "The shield is not ready yet!";
 
             else if (((deciding == true) && radProtect.Checked == true) && mirageCD != 0)
             {
                 imgPlayer.Image = Properties.Resources.Shield;
+                protectCD += 3;
                 if (chargedCD == 0)
                 {
                     imgBoss1.Image = Properties.Resources.Rock;
@@ -500,6 +519,7 @@ namespace Rock_Paper_Scissors
                 barBoss2hp.Value = opponentrealhp;
                 barBoss3hp.Value = opponentrealhp;
                 mirageCD = 5;
+                protectCD -= 1;
                 chargedCD -= 1;
 
             }
@@ -566,6 +586,7 @@ namespace Rock_Paper_Scissors
                     barBoss2hp.Value = opponentrealhp;
                     barBoss3hp.Value = opponentrealhp;
                     mirageCD = 5;
+                    protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else if (opponentmove == 0)
@@ -575,6 +596,7 @@ namespace Rock_Paper_Scissors
                     imgBoss3.Image = Properties.Resources.Rock;
                     lblActions.Text = "Rock clashes with Rock, and nothing happens!";
                     mirageCD -= 1;
+                    protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else if (opponentmove == 1)
@@ -585,6 +607,8 @@ namespace Rock_Paper_Scissors
                     lblActions.Text = "Rock clashes with Paper, and you take damage!";
                     barPlayerhp.Value -= 25;
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else
@@ -596,6 +620,8 @@ namespace Rock_Paper_Scissors
                     barBoss1hp.Value -= 25;
                     opponentrealhp -= 25;
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1; ;
                     chargedCD -= 1;
                 }
             }
@@ -615,6 +641,8 @@ namespace Rock_Paper_Scissors
                     barBoss1hp.Value -= 25;
                     opponentrealhp -= 25;
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD = 5;
                 }
                 else if (mirageCD == 0)
@@ -653,6 +681,8 @@ namespace Rock_Paper_Scissors
                     barBoss2hp.Value = opponentrealhp;
                     barBoss3hp.Value = opponentrealhp;
                     mirageCD = 5;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else if (opponentmove == 0)
@@ -664,6 +694,8 @@ namespace Rock_Paper_Scissors
                     opponentrealhp -= 25;
                     barBoss1hp.Value -= 25;
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else if (opponentmove == 1)
@@ -673,6 +705,8 @@ namespace Rock_Paper_Scissors
                     imgBoss3.Image = Properties.Resources.Paper;
                     lblActions.Text = "Paper clashes with Paper, and nothing happens!";
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else
@@ -683,6 +717,8 @@ namespace Rock_Paper_Scissors
                     lblActions.Text = "Paper clashes with scissors, and you take damage!";
                     barPlayerhp.Value -= 25;
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
 
                 }
@@ -704,6 +740,8 @@ namespace Rock_Paper_Scissors
                     barBoss1hp.Value -= 25;
                     opponentrealhp -= 25;
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD = 5;
                 }
                 else if (mirageCD == 0)
@@ -742,6 +780,8 @@ namespace Rock_Paper_Scissors
                     barBoss2hp.Value = opponentrealhp;
                     barBoss3hp.Value = opponentrealhp;
                     mirageCD = 5;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else if (opponentmove == 0)
@@ -752,6 +792,8 @@ namespace Rock_Paper_Scissors
                     lblActions.Text = "Scissors clashes with Rock, and you take damage!";
                     barPlayerhp.Value -= 25;
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else if (opponentmove == 1)
@@ -763,6 +805,8 @@ namespace Rock_Paper_Scissors
                     barBoss1hp.Value -= 25;
                     opponentrealhp -= 25;
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else
@@ -772,6 +816,8 @@ namespace Rock_Paper_Scissors
                     imgBoss3.Image = Properties.Resources.Scissors;
                     lblActions.Text = "Scissors clashes with scissors, and nothing happens!";
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
 
                 }
@@ -790,6 +836,8 @@ namespace Rock_Paper_Scissors
                 imgBoss1.Visible = false;
                 barPlayerhp.Value -= 25;
                 mirageCD -= 1;
+                if (protectCD != 0)
+                    protectCD -= 1;
                 chargedCD -= 1;
             }
             else
@@ -817,6 +865,8 @@ namespace Rock_Paper_Scissors
                         barPlayerhp.Value -= 100;
                     barBoss3hp.Value -= 25;
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD = 5;
                 }
                 else if (mirageCD == 0)
@@ -864,6 +914,8 @@ namespace Rock_Paper_Scissors
                     imgBoss3.Image = Properties.Resources.Rock;
                     lblActions.Text = "Rock clashes with Rock, and nothing happens!";
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else if (opponentmove == 1)
@@ -874,6 +926,8 @@ namespace Rock_Paper_Scissors
                     lblActions.Text = "Rock clashes with Paper, and you take damage!";
                     barPlayerhp.Value -= 25;
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else
@@ -885,6 +939,8 @@ namespace Rock_Paper_Scissors
                     barBoss3hp.Value -= 25;
                     opponentrealhp -= 25;
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
                 }
             }
@@ -904,6 +960,8 @@ namespace Rock_Paper_Scissors
                     barBoss3hp.Value -= 25;
                     opponentrealhp -= 25;
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD = 5;
                 }
                 else if (mirageCD == 0)
@@ -942,6 +1000,8 @@ namespace Rock_Paper_Scissors
                     barBoss2hp.Value = opponentrealhp;
                     barBoss3hp.Value = opponentrealhp;
                     mirageCD = 5;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else if (opponentmove == 0)
@@ -953,6 +1013,8 @@ namespace Rock_Paper_Scissors
                     opponentrealhp -= 25;
                     barBoss3hp.Value -= 25;
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else if (opponentmove == 1)
@@ -962,6 +1024,8 @@ namespace Rock_Paper_Scissors
                     imgBoss3.Image = Properties.Resources.Paper;
                     lblActions.Text = "Paper clashes with Paper, and nothing happens!";
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else
@@ -972,6 +1036,8 @@ namespace Rock_Paper_Scissors
                     lblActions.Text = "Paper clashes with scissors, and you take damage!";
                     barPlayerhp.Value -= 25;
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
 
                 }
@@ -993,6 +1059,8 @@ namespace Rock_Paper_Scissors
                     barBoss3hp.Value -= 25;
                     opponentrealhp -= 25;
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD = 5;
                 }
                 else if (mirageCD == 0)
@@ -1031,6 +1099,8 @@ namespace Rock_Paper_Scissors
                     barBoss2hp.Value = opponentrealhp;
                     barBoss3hp.Value = opponentrealhp;
                     mirageCD = 5;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else if (opponentmove == 0)
@@ -1041,6 +1111,8 @@ namespace Rock_Paper_Scissors
                     lblActions.Text = "Scissors clashes with Rock, and you take damage!";
                     barPlayerhp.Value -= 25;
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else if (opponentmove == 1)
@@ -1052,6 +1124,8 @@ namespace Rock_Paper_Scissors
                     barBoss3hp.Value -= 25;
                     opponentrealhp -= 25;
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
                 }
                 else
@@ -1061,6 +1135,8 @@ namespace Rock_Paper_Scissors
                     imgBoss3.Image = Properties.Resources.Scissors;
                     lblActions.Text = "Scissors clashes with scissors, and nothing happens!";
                     mirageCD -= 1;
+                    if (protectCD != 0)
+                        protectCD -= 1;
                     chargedCD -= 1;
 
                 }
@@ -1079,6 +1155,8 @@ namespace Rock_Paper_Scissors
                 imgBoss3.Visible = false;
                 barPlayerhp.Value -= 25;
                 mirageCD -= 1;
+                if (protectCD != 0)
+                    protectCD -= 1;
                 chargedCD -= 1;
             }
             else
@@ -1099,6 +1177,7 @@ namespace Rock_Paper_Scissors
             barPlayerhp.Value = 250;
             lblBoss2.Visible = true;
             barBoss2hp.Visible = true;
+            imgBoss2.Visible = true;
             barBoss2hp.Value = 250;
             lblActions.Text = "";
             lblActions.Visible = true;
@@ -1120,6 +1199,7 @@ namespace Rock_Paper_Scissors
              mirage3 = false;
              mirageCD = 1;
              chargedCD = 3;
+             protectCD = 0;
              opponentrealhp = 250;
              protectCD = 0;
              timer = 0;

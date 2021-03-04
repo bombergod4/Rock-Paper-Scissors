@@ -49,6 +49,8 @@ namespace Rock_Paper_Scissors
             this.lblBoss1 = new System.Windows.Forms.Label();
             this.barBoss3hp = new System.Windows.Forms.ProgressBar();
             this.lblBoss3 = new System.Windows.Forms.Label();
+            this.btnPlay = new System.Windows.Forms.Button();
+            this.btnQuit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBoss3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBoss1)).BeginInit();
@@ -87,6 +89,8 @@ namespace Rock_Paper_Scissors
             this.lblPlayer.TabIndex = 3;
             this.lblPlayer.Text = "Player";
             this.lblPlayer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPlayer.Visible = false;
+            this.lblPlayer.Click += new System.EventHandler(this.lblPlayer_Click);
             // 
             // imgBoss1
             // 
@@ -110,6 +114,7 @@ namespace Rock_Paper_Scissors
             this.lblBoss2.TabIndex = 9;
             this.lblBoss2.Text = "Raid Boss";
             this.lblBoss2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblBoss2.Visible = false;
             this.lblBoss2.Click += new System.EventHandler(this.lblBoss2_Click);
             // 
             // imgBoss2
@@ -131,6 +136,7 @@ namespace Rock_Paper_Scissors
             this.lblPlayerhp.TabIndex = 13;
             this.lblPlayerhp.Text = "250/250";
             this.lblPlayerhp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPlayerhp.Visible = false;
             // 
             // barPlayerhp
             // 
@@ -140,6 +146,7 @@ namespace Rock_Paper_Scissors
             this.barPlayerhp.Size = new System.Drawing.Size(172, 23);
             this.barPlayerhp.TabIndex = 12;
             this.barPlayerhp.Value = 250;
+            this.barPlayerhp.Visible = false;
             // 
             // barBoss2hp
             // 
@@ -149,6 +156,7 @@ namespace Rock_Paper_Scissors
             this.barBoss2hp.Size = new System.Drawing.Size(166, 23);
             this.barBoss2hp.TabIndex = 18;
             this.barBoss2hp.Value = 250;
+            this.barBoss2hp.Visible = false;
             // 
             // radRock
             // 
@@ -157,7 +165,6 @@ namespace Rock_Paper_Scissors
             this.radRock.Name = "radRock";
             this.radRock.Size = new System.Drawing.Size(104, 24);
             this.radRock.TabIndex = 19;
-            this.radRock.TabStop = true;
             this.radRock.Text = "Rock";
             this.radRock.UseVisualStyleBackColor = true;
             this.radRock.CheckedChanged += new System.EventHandler(this.radRock_Checked);
@@ -169,9 +176,9 @@ namespace Rock_Paper_Scissors
             this.radPaper.Name = "radPaper";
             this.radPaper.Size = new System.Drawing.Size(104, 33);
             this.radPaper.TabIndex = 20;
-            this.radPaper.TabStop = true;
             this.radPaper.Text = "Paper";
             this.radPaper.UseVisualStyleBackColor = true;
+            this.radPaper.CheckedChanged += new System.EventHandler(this.radPaper_Checked);
             // 
             // radScissors
             // 
@@ -180,9 +187,9 @@ namespace Rock_Paper_Scissors
             this.radScissors.Name = "radScissors";
             this.radScissors.Size = new System.Drawing.Size(104, 33);
             this.radScissors.TabIndex = 21;
-            this.radScissors.TabStop = true;
             this.radScissors.Text = "Scissors";
             this.radScissors.UseVisualStyleBackColor = true;
+            this.radScissors.CheckedChanged += new System.EventHandler(this.radScissors_Checked);
             // 
             // grpDecision
             // 
@@ -197,6 +204,7 @@ namespace Rock_Paper_Scissors
             this.grpDecision.TabIndex = 22;
             this.grpDecision.TabStop = false;
             this.grpDecision.Text = "Players Choice";
+            this.grpDecision.Visible = false;
             // 
             // radProtect
             // 
@@ -205,9 +213,9 @@ namespace Rock_Paper_Scissors
             this.radProtect.Name = "radProtect";
             this.radProtect.Size = new System.Drawing.Size(104, 33);
             this.radProtect.TabIndex = 22;
-            this.radProtect.TabStop = true;
             this.radProtect.Text = "Protect";
             this.radProtect.UseVisualStyleBackColor = true;
+            this.radProtect.CheckedChanged += new System.EventHandler(this.radProtect_Checked);
             // 
             // lblActions
             // 
@@ -217,6 +225,7 @@ namespace Rock_Paper_Scissors
             this.lblActions.Size = new System.Drawing.Size(271, 82);
             this.lblActions.TabIndex = 23;
             this.lblActions.Text = "Sample Text";
+            this.lblActions.Visible = false;
             // 
             // barBoss1hp
             // 
@@ -240,6 +249,7 @@ namespace Rock_Paper_Scissors
             this.lblBoss1.Text = "Raid Boss";
             this.lblBoss1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblBoss1.Visible = false;
+            this.lblBoss1.Click += new System.EventHandler(this.lblBoss1_Click);
             // 
             // barBoss3hp
             // 
@@ -263,12 +273,35 @@ namespace Rock_Paper_Scissors
             this.lblBoss3.Text = "Raid Boss";
             this.lblBoss3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblBoss3.Visible = false;
+            this.lblBoss3.Click += new System.EventHandler(this.lblBoss3_Click);
+            // 
+            // btnPlay
+            // 
+            this.btnPlay.Location = new System.Drawing.Point(591, 304);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(146, 41);
+            this.btnPlay.TabIndex = 28;
+            this.btnPlay.Text = "Play";
+            this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            // 
+            // btnQuit
+            // 
+            this.btnQuit.Location = new System.Drawing.Point(591, 351);
+            this.btnQuit.Name = "btnQuit";
+            this.btnQuit.Size = new System.Drawing.Size(146, 41);
+            this.btnQuit.TabIndex = 29;
+            this.btnQuit.Text = "Quit";
+            this.btnQuit.UseVisualStyleBackColor = true;
+            this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnQuit);
+            this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.barBoss3hp);
             this.Controls.Add(this.lblBoss3);
             this.Controls.Add(this.barBoss1hp);
@@ -318,6 +351,8 @@ namespace Rock_Paper_Scissors
         private System.Windows.Forms.ProgressBar barBoss3hp;
         private System.Windows.Forms.Label lblBoss3;
         private System.Windows.Forms.PictureBox imgBoss1;
+        private System.Windows.Forms.Button btnPlay;
+        private System.Windows.Forms.Button btnQuit;
     }
 }
 

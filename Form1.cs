@@ -12,6 +12,7 @@ namespace Rock_Paper_Scissors
 {
     public partial class Form1 : Form
     {
+        // Crashes randomly after turn 18 and goes infinte after the 5th Protect
         bool deciding = false;
         bool mirage1 = false;
         bool mirage2 = false;
